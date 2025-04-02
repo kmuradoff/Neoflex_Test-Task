@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: Neoflex-Demo
+
+holidays:
+  nager:
+    base-url: https://date.nager.at/api/v3
+    country-code: RU
+    connect-timeout: 3000
+    read-timeout: 3000

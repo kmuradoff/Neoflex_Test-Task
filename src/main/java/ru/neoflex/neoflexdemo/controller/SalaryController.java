@@ -1,19 +1,22 @@
 package ru.neoflex.neoflexdemo.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.neoflex.neoflexdemo.dto.SalaryRequest;
-import ru.neoflex.neoflexdemo.dto.SalaryResponse;
-import ru.neoflex.neoflexdemo.service.SalaryService;
+import ru.neoflex.neoflexdemo.dto.VacationCalculationRequest;
+import ru.neoflex.neoflexdemo.service.VacationCalculationService;
+
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
 public class SalaryController {
-    private final SalaryService salaryService;
+    private final VacationCalculationService calculationService;
 
-    @GetMapping("/calculate")
-    private SalaryResponse calculate(SalaryRequest salaryRequest) {
-        return salaryService.calculateVacationPay(salaryRequest);
+    @PostMapping("/calculate")
+    public ResponseEntity<?> calculate(@Valid @RequestBody VacationCalculationRequest request) {
+        return ResponseEntity.ok(calculationService.calculate(request));
     }
 }
