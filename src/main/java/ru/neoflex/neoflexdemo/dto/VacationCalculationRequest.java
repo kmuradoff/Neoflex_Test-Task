@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -24,6 +25,7 @@ public class VacationCalculationRequest {
     private BigDecimal totalIncome;
 
     @Builder.Default
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Set<LocalDate> vacationDates = new HashSet<>();
 
     @Min(1)
